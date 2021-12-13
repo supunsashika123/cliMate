@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: 10,
   },
-  mainTempText: {fontSize: 65, lineHeight: 65},
+  mainTempText: {fontSize: 65, lineHeight: 65, fontWeight: '200'},
   mainTempUnitText: {fontSize: 25, lineHeight: 25},
   weatherTypeText: {fontSize: 20},
   subTempText: {fontSize: 20},

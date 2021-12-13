@@ -6,15 +6,15 @@ import {
   ImageBackground,
   Dimensions,
   Animated,
-  TouchableOpacity,
   Easing,
   StyleSheet,
 } from 'react-native';
-import AntIcon from 'react-native-vector-icons/AntDesign';
 import {fetchNewData} from '../../services/WeatherService';
 import MainLayout from './components/MainLayout';
 import TableLayout from './components/TableLayout';
 import moment from 'moment';
+import Sidebar from './components/Sidebar';
+import HeaderBar from './components/HeaderBar';
 
 const deviceWidth = Dimensions.get('screen').width;
 const dotSize = 8;
@@ -22,11 +22,13 @@ const dotSize = 8;
 const Home = () => {
   const [weatherData, setWeatherData] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
+  const [showSidebar, setShowSidebar] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [opacityValue, setOpacityValue] = useState(new Animated.Value(0.3));
+  const [opacityValue] = useState(new Animated.Value(0.3));
 
   useEffect(() => {
     getNewData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getNewData = async () => {
@@ -79,23 +81,19 @@ const Home = () => {
 
   return (
     <View style={styles.mainContainer}>
+      <Sidebar
+        show={showSidebar}
+        weatherData={weatherData}
+        onHide={() => setShowSidebar(false)}
+        onItemSelect={item => setSelectedItem(item)}
+      />
       <View style={styles.mainSectionWrapper}>
         <ImageBackground
           source={{uri: selectedItem.image}}
           blurRadius={50}
           resizeMode="cover"
           style={styles.imageBackgroundHeader}>
-          <View style={styles.menuButtonContainer}>
-            <TouchableOpacity>
-              <AntIcon name="menu-fold" size={18} color="#fff" />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.appTitleContainer}>
-            <Text style={styles.appTitle}>cliMate</Text>
-          </View>
-          <View style={styles.searchIconContainer}>
-            <AntIcon name="search1" size={18} color="#fff" />
-          </View>
+          <HeaderBar onToggleSidebar={() => setShowSidebar(!showSidebar)} />
         </ImageBackground>
         <View style={styles.townImageContainer}>
           <Image
@@ -160,7 +158,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {backgroundColor: 'white', flex: 1},
   mainSectionWrapper: {
-    flex: 1,
+    flex: 2,
     justifyContent: 'space-between',
   },
   imageBackgroundHeader: {
@@ -169,13 +167,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 20,
   },
-  menuButtonContainer: {flex: 1},
-  appTitleContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  appTitle: {color: 'white', fontSize: 18},
-  searchIconContainer: {flex: 1, alignItems: 'flex-end'},
   townImageContainer: {
     alignItems: 'center',
     shadowColor: '#000',
@@ -190,7 +181,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: -55,
   },
-  mainInfoBoxContainer: {flex: 4, paddingTop: 80},
+  mainInfoBoxContainer: {flex: 5, paddingTop: 80},
   townTitle: {textAlign: 'center', fontSize: 30, fontWeight: 'bold'},
   paginationContainer: {
     flexDirection: 'row',
