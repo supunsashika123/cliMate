@@ -27,7 +27,7 @@ const HeaderBar = ({onToggleSidebar, darkMode, isOpen}) => {
 };
 
 const styles = StyleSheet.create({
-  mainWrapper: {width: '100%', flexDirection: 'row'},
+  mainWrapper: {width: '100%', flexDirection: 'row', paddingHorizontal: 20},
   menuButtonContainer: {flex: 1},
   appTitleContainer: {
     flex: 1,

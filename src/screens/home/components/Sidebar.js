@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 0,
     justifyContent: 'flex-start',
-    paddingHorizontal: 20,
     paddingTop: Platform.OS === 'ios' ? 50 : 20,
   },
   scrollViewContainer: {flex: 1, paddingVertical: 20},

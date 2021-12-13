@@ -7,7 +7,6 @@ import {WEATHER_ICON_MAP} from '../../../helpers/utils';
 const deviceWidth = Dimensions.get('screen').width;
 
 const MainLayout = ({item}) => {
-  console.log(item);
   return (
     <View style={{width: deviceWidth}}>
       <View style={styles.mainContentWrapper}>
