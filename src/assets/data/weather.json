@@ -52,7 +52,58 @@
   },
   {
     "town": "Budapest",
-    "image": "https://theplanetd.com/images/Best-Things-to-do-in-Budapest.jpg",
+    "image": "https://cdn.britannica.com/54/6954-050-A7871925/Central-Budapest-Danube-River-bank-Parliament-Building.jpg",
+    "data": [
+      {
+        "date": "2021-12-11",
+        "maxTemp": "39°",
+        "minTemp": "21°",
+        "mode": "Cloudy",
+        "windSpeed": "5mph",
+        "humiditiy": "77%",
+        "rainProbability": "80%"
+      },
+      {
+        "date": "2021-12-12",
+        "maxTemp": "39°",
+        "minTemp": "27°",
+        "mode": "Sunny",
+        "windSpeed": "15mph",
+        "humiditiy": "80%",
+        "rainProbability": "20%"
+      },
+      {
+        "date": "2021-12-13",
+        "maxTemp": "58°",
+        "minTemp": "32°",
+        "mode": "Sunny",
+        "windSpeed": "80mph",
+        "humiditiy": "20%",
+        "rainProbability": "50%"
+      },
+      {
+        "date": "2021-12-14",
+        "maxTemp": "57°",
+        "minTemp": "37°",
+        "mode": "Rainy",
+        "windSpeed": "15mph",
+        "humiditiy": "77%",
+        "rainProbability": "100%"
+      },
+      {
+        "date": "2021-12-15",
+        "maxTemp": "54°",
+        "minTemp": "38°",
+        "mode": "Cloudy",
+        "windSpeed": "58mph",
+        "humiditiy": "65%",
+        "rainProbability": "80%"
+      }
+    ]
+  },
+  {
+    "town": "Colombo",
+    "image": "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1200,h_630/w_80,x_15,y_15,g_south_west,l_klook_water/activities/og9ytzikvohsybtom0dj/Colombo%20City%20Half%20Day%20Tour.jpg",
     "data": [
       {
         "date": "2021-12-11",

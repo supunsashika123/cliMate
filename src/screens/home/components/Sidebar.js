@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, Platform} from 'react-native';
 import Modal from 'react-native-modal';
 import HeaderBar from './HeaderBar';
 import SidebarItem from './SidebarItem';
@@ -16,7 +16,7 @@ const Sidebar = ({show, onHide, weatherData, onItemSelect}) => {
       animationIn="slideInLeft"
       animationOut="slideOutLeft"
       style={styles.container}>
-      <HeaderBar onToggleSidebar={() => onHide()} darkMode />
+      <HeaderBar onToggleSidebar={() => onHide()} darkMode isOpen />
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         {weatherData.map((data, i) => (
           <SidebarItem
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 0,
     justifyContent: 'flex-start',
-    paddingTop: 67,
     paddingHorizontal: 20,
+    paddingTop: Platform.OS === 'ios' ? 50 : 20,
   },
   scrollViewContainer: {flex: 1, paddingVertical: 20},
 });

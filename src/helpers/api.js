@@ -3,7 +3,7 @@ export const getWeatherObject = async => {
     try {
       setTimeout(() => {
         resolve(require('../assets/data/weather.json'));
-      }, 2000);
+      }, 100);
     } catch (err) {
       reject(err);
     }

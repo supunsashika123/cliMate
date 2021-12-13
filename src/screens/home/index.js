@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
@@ -8,6 +9,8 @@ import {
   Animated,
   Easing,
   StyleSheet,
+  StatusBar,
+  Platform,
 } from 'react-native';
 import {fetchNewData} from '../../services/WeatherService';
 import MainLayout from './components/MainLayout';
@@ -15,6 +18,7 @@ import TableLayout from './components/TableLayout';
 import moment from 'moment';
 import Sidebar from './components/Sidebar';
 import HeaderBar from './components/HeaderBar';
+import {getColorFromImage} from '../../helpers/imageColor';
 
 const deviceWidth = Dimensions.get('screen').width;
 const dotSize = 8;
@@ -22,14 +26,24 @@ const dotSize = 8;
 const Home = () => {
   const [weatherData, setWeatherData] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
+  const [imageColor, setImageColor] = useState('#fff');
   const [showSidebar, setShowSidebar] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [opacityValue] = useState(new Animated.Value(0.3));
 
   useEffect(() => {
     getNewData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    setStatusBarBackground();
+  }, [selectedItem]);
+
+  const setStatusBarBackground = async () => {
+    const color = await getColorFromImage(selectedItem.image);
+
+    setImageColor(color);
+  };
 
   const getNewData = async () => {
     Animated.loop(
@@ -81,6 +95,7 @@ const Home = () => {
 
   return (
     <View style={styles.mainContainer}>
+      <StatusBar backgroundColor={imageColor} />
       <Sidebar
         show={showSidebar}
         weatherData={weatherData}
@@ -156,7 +171,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
-  mainContainer: {backgroundColor: 'white', flex: 1},
+  mainContainer: {backgroundColor: 'white', flex: 1, paddingBottom: 10},
   mainSectionWrapper: {
     flex: 2,
     justifyContent: 'space-between',
@@ -164,7 +179,7 @@ const styles = StyleSheet.create({
   imageBackgroundHeader: {
     flex: 1,
     flexDirection: 'row',
-    paddingTop: 20,
+    paddingTop: Platform.OS === 'ios' ? StatusBar.currentHeight + 50 : 20,
     paddingHorizontal: 20,
   },
   townImageContainer: {
@@ -199,6 +214,7 @@ const styles = StyleSheet.create({
   dotBorder: {
     width: dotSize + 8,
     height: dotSize + 8,
+    backgroundColor: 'black',
     borderRadius: dotSize + 8,
     borderWidth: 1,
     borderColor: '#333',
